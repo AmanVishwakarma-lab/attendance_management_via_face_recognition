@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "705707833925",
+    "project_id": "year4thattendanceproject",
+    "storage_bucket": "year4thattendanceproject.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705707833925:android:b06a3b74b91effaf3ec12c",
+        "android_client_info": {
+          "package_name": "com.example.year4th"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBrvpdgY_Sv4PGke2ZauC1gZ0kBHqj_do"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
