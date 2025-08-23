@@ -52,7 +52,7 @@ public class SignUpPage extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(this, "Signup Successful", Toast.LENGTH_SHORT).show();
                         // Navigate to home or login
-                        startActivity(new Intent(this, SubjectSelection.class));
+                        startActivity(new Intent(this, ChooesBranchActivity.class));
                         finish();
                     } else {
                         String errorMessage = task.getException().getMessage();

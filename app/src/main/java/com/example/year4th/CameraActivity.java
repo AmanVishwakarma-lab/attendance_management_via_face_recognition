@@ -205,7 +205,7 @@ public class CameraActivity extends AppCompatActivity {
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://10.0.2.2:5000/recognize") // Use 10.0.2.2    for emulator
+                .url("http://10.0.2.2:10000/recognize") // Use 10.0.2.2    for emulator
                 .post(requestBody)
                 .build();
 
@@ -244,11 +244,24 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     private void saveToFirebase(List<String> names) {
-        String subject = getIntent().getStringExtra("subject");
+        String pathForDb = getIntent().getStringExtra("pathForDb");
+
+
+
+        if (pathForDb == null) {
+            Toast.makeText(this, "Path not found!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        String[] pathDb = pathForDb.split("/");
+        if (pathDb.length != 6) {
+            return;
+        }
+
+
         totalPresentStudents.setText(null);
         String str="Total Present Students = "+(String.valueOf(names.size()));
         totalPresentStudents.setText(str);
-        if (subject == null) {
+        if (pathForDb == null) {
             Toast.makeText(this, "Subject not found!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -260,14 +273,15 @@ public class CameraActivity extends AppCompatActivity {
         for (String name : names) {
             Map<String, Object> attendanceData = new HashMap<>();
             attendanceData.put("status", "present");
-            db.collection("users")
-                    .document(auth.getUid())
-                    .collection("subjects")
-                    .document(subject)
-                    .collection("dates")
-                    .document(date)
-                    .collection("studentNames")
-                    .document(name)
+            db.collection("users").document(auth.getUid())
+                    .collection("Course").document(pathDb[0])
+                    .collection("Department").document(pathDb[1])
+                    .collection("Year").document(pathDb[2])
+                    .collection("Section").document(pathDb[3])
+                    .collection("Subjects").document(pathDb[4])
+                    .collection("Lecture").document(pathDb[5])
+                    .collection("dates").document(date)
+                    .collection("studentNames").document(name)
                     .set(attendanceData)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

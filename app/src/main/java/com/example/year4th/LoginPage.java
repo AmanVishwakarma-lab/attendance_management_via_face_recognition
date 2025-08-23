@@ -58,7 +58,7 @@ public class LoginPage extends AppCompatActivity {
 
         if (currentUser != null) {
             // User is already logged in
-            startActivity(new Intent(this, SubjectSelection.class));
+            startActivity(new Intent(this, ChooesBranchActivity.class));
             finish();
         }
     }
@@ -76,7 +76,7 @@ public class LoginPage extends AppCompatActivity {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(this, SubjectSelection.class));
+                            startActivity(new Intent(this, ChooesBranchActivity.class));
                             finish();
                         } else {
                             Toast.makeText(this, "Login Failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
