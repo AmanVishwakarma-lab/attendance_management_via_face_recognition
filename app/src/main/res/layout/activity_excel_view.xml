@@ -17,10 +17,20 @@
         android:background="@drawable/custom_btn"
         android:layout_marginTop="10dp"
         android:layout_margin="10dp"
-        android:id="@+id/excelBtn"
+        android:id="@+id/saveExcelBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/export_to_excel"
+        android:text="Save Excel File"
+        android:textSize="15sp"
+        />
+    <androidx.appcompat.widget.AppCompatButton
+        android:background="@drawable/custom_btn"
+        android:layout_marginTop="10dp"
+        android:layout_margin="10dp"
+        android:id="@+id/shareExcelBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share Excel File"
         android:textSize="15sp"
         />
 

@@ -34,6 +34,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
@@ -242,12 +243,8 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
     }
-
     private void saveToFirebase(List<String> names) {
         String pathForDb = getIntent().getStringExtra("pathForDb");
-
-
-
         if (pathForDb == null) {
             Toast.makeText(this, "Path not found!", Toast.LENGTH_SHORT).show();
             return;
@@ -257,46 +254,136 @@ public class CameraActivity extends AppCompatActivity {
             return;
         }
 
-
-        totalPresentStudents.setText(null);
-        String str="Total Present Students = "+(String.valueOf(names.size()));
-        totalPresentStudents.setText(str);
-        if (pathForDb == null) {
-            Toast.makeText(this, "Subject not found!", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        totalPresentStudents.setText("Total Present Students = " + names.size());
 
         // Get today's date
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference lectureRef = db.collection("users").document(auth.getUid())
+                .collection("Course").document(pathDb[0])
+                .collection("Department").document(pathDb[1])
+                .collection("Year").document(pathDb[2])
+                .collection("Section").document(pathDb[3])
+                .collection("Subjects").document(pathDb[4])
+                .collection("Lecture").document(pathDb[5]);
 
+        // ✅ Ensure lecture doc exists
+        Map<String, Object> lectureInfo = new HashMap<>();
+        lectureInfo.put("lectureId", pathDb[5]);
+        lectureInfo.put("createdAt", FieldValue.serverTimestamp());
+        lectureRef.set(lectureInfo, SetOptions.merge());
+
+
+        // ✅ Ensure date doc exists
+        DocumentReference dateRef = lectureRef.collection("dates").document(date);
+        Map<String, Object> dateInfo = new HashMap<>();
+        dateInfo.put("date", date);
+        dateInfo.put("createdAt", FieldValue.serverTimestamp());
+        dateRef.set(dateInfo, SetOptions.merge());
+
+
+
+
+        // ✅ Save attendance inside lecture -> dates -> studentNames
         for (String name : names) {
             Map<String, Object> attendanceData = new HashMap<>();
             attendanceData.put("status", "present");
-            db.collection("users").document(auth.getUid())
-                    .collection("Course").document(pathDb[0])
-                    .collection("Department").document(pathDb[1])
-                    .collection("Year").document(pathDb[2])
-                    .collection("Section").document(pathDb[3])
-                    .collection("Subjects").document(pathDb[4])
-                    .collection("Lecture").document(pathDb[5])
-                    .collection("dates").document(date)
+
+            lectureRef.collection("dates").document(date)
                     .collection("studentNames").document(name)
                     .set(attendanceData)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Toast.makeText(CameraActivity.this, "Attendance marked", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(CameraActivity.this, "Attendance Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    .addOnSuccessListener(unused ->
+                                    Toast.makeText(CameraActivity.this, "Attendance marked", Toast.LENGTH_SHORT).show()
+                    )
+                    .addOnFailureListener(e ->
+                            Toast.makeText(CameraActivity.this, "Attendance failed", Toast.LENGTH_SHORT).show()
+                    );
         }
     }
+
+
+//    private void saveToFirebase(List<String> names) {
+//        String pathForDb = getIntent().getStringExtra("pathForDb");
+//
+//
+//
+//        if (pathForDb == null) {
+//            Toast.makeText(this, "Path not found!", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        String[] pathDb = pathForDb.split("/");
+//        if (pathDb.length != 6) {
+//            return;
+//        }
+//
+//
+//        totalPresentStudents.setText(null);
+//        String str="Total Present Students = "+(String.valueOf(names.size()));
+//        totalPresentStudents.setText(str);
+//        if (pathForDb == null) {
+//            Toast.makeText(this, "Subject not found!", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//        // Get today's date
+//        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+//
+////        FirebaseFirestore db = FirebaseFirestore.getInstance();
+////        DocumentReference lectureRef = db.collection("users").document(auth.getUid())
+////                .collection("Course").document(pathDb[0])
+////                .collection("Department").document(pathDb[1])
+////                .collection("Year").document(pathDb[2])
+////                .collection("Section").document(pathDb[3])
+////                .collection("Subjects").document(pathDb[4])
+////                .collection("Lecture").document(pathDb[5]);
+////
+////        Map<String, Object> lectureInfo = new HashMap<>();
+////        lectureInfo.put("createdAt", FieldValue.serverTimestamp());
+////
+////        lectureRef.set(lectureInfo, SetOptions.merge()); // 🔹 this ensures Lecture doc is visible
+////
+////        // Save students inside lecture -> date -> studentNames
+////        for (String name : names) {
+////            Map<String, Object> attendanceData = new HashMap<>();
+////            attendanceData.put("status", "present");
+////
+////            lectureRef.collection("dates").document(date)
+////                    .collection("studentNames").document(name)
+////                    .set(attendanceData)
+////                    .addOnSuccessListener(unused ->
+////                            Toast.makeText(CameraActivity.this, "Attendance marked", Toast.LENGTH_SHORT).show()
+////                    )
+////                    .addOnFailureListener(e ->
+////                            Toast.makeText(CameraActivity.this, "Attendance Failed", Toast.LENGTH_SHORT).show()
+////                    );
+//        for (String name : names) {
+//            Map<String, Object> attendanceData = new HashMap<>();
+//            attendanceData.put("status", "present");
+//            db.collection("users").document(auth.getUid())
+//                    .collection("Course").document(pathDb[0])
+//                    .collection("Department").document(pathDb[1])
+//                    .collection("Year").document(pathDb[2])
+//                    .collection("Section").document(pathDb[3])
+//                    .collection("Subjects").document(pathDb[4])
+//                    .collection("Lecture").document(pathDb[5])
+//                    .collection("dates").document(date)
+//                    .collection("studentNames").document(name)
+//                    .set(attendanceData)
+//                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                        @Override
+//                        public void onSuccess(Void unused) {
+//                            Toast.makeText(CameraActivity.this, "Attendance marked", Toast.LENGTH_SHORT).show();
+//                        }
+//                    })
+//                    .addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception e) {
+//                            Toast.makeText(CameraActivity.this, "Attendance Failed", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//        }
+//    }
 
 
 }

@@ -3,6 +3,7 @@ package com.example.year4th;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -19,6 +20,7 @@ public class SignUpPage extends AppCompatActivity {
     AppCompatButton signUpBtn;
     EditText signUpMail;
     EditText signUpPass;
+    TextView loginText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +34,14 @@ public class SignUpPage extends AppCompatActivity {
         signUpBtn=findViewById(R.id.signUpBtn);
         signUpMail=findViewById(R.id.signUpEmail);
         signUpPass=findViewById(R.id.signUpPassword);
+        loginText=findViewById(R.id.goToLoginText);
         auth=FirebaseAuth.getInstance();
 //        when login successfully goto subjectSelection page
         signUpBtn.setOnClickListener(v -> {
             signUp();
+        });
+        loginText.setOnClickListener(v -> {
+            startActivity(new Intent(this, LoginPage.class));
         });
     }
     private void signUp(){

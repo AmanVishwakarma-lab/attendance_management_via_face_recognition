@@ -167,7 +167,8 @@ public class ChooesBranchActivity extends AppCompatActivity {
         });
 
         binding.btnHistory.setOnClickListener(v -> {
-            startActivity(new Intent(this, HistoryActivity.class));
+            Intent intent = new Intent(this, HistoryActivity.class);
+            startActivity(intent);
         });
         binding.logoutBtn.setOnClickListener(v->{
             FirebaseAuth.getInstance().signOut();

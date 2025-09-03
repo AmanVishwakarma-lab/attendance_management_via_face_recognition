@@ -10,7 +10,6 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -25,16 +24,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Year4th"
         android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".DateAndLectureSelection"
+            android:exported="true" >
+
+        </activity>
         <activity
             android:name=".ChooesBranchActivity"
-            android:exported="false" >
+            android:exported="true">
+
         </activity>
         <activity
             android:name=".ExcelViewActivity"
             android:exported="false" />
-        <activity
-            android:name=".SubjectSelection"
-            android:exported="false"></activity>
         <activity
             android:name=".SignUpPage"
             android:exported="false" />
@@ -46,6 +49,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".HistoryActivity"
@@ -54,13 +58,10 @@
             android:name=".CameraActivity"
             android:exported="false"
             android:theme="@style/Theme.Year4th" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
