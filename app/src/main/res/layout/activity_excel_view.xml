@@ -6,32 +6,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ExcelViewActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#BF4D1A05">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="#1EA20C"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_weight="1"
+                android:paddingStart="20dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attendance"/>
+
+        </LinearLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <ListView
         android:layout_margin="10dp"
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
     <androidx.appcompat.widget.AppCompatButton
-        android:background="@drawable/custom_btn"
-        android:layout_marginTop="10dp"
-        android:layout_margin="10dp"
         android:id="@+id/saveExcelBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/custom_btn"
         android:text="Save Excel File"
-        android:textSize="15sp"
-        />
+        android:textSize="20sp" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:background="@drawable/custom_btn"
-        android:layout_marginTop="10dp"
-        android:layout_margin="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:id="@+id/shareExcelBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Share Excel File"
-        android:textSize="15sp"
+        android:textSize="20sp"
         />
 
 

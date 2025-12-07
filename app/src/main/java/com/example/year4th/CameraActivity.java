@@ -65,7 +65,6 @@ import okhttp3.Response;
 public class CameraActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST_CODE = 101;
     private static final int GALLERY_REQUEST_CODE = 102;
-
     private Uri photoUri;
     private ImageView imagePreview;
     AppCompatButton clickImage, btnUpload;
@@ -159,7 +158,6 @@ public class CameraActivity extends AppCompatActivity {
             }
         }
     }
-
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -206,7 +204,7 @@ public class CameraActivity extends AppCompatActivity {
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://10.0.2.2:10000/recognize") // Use 10.0.2.2    for emulator
+                .url("http://10.82.36.90:5000/recognize") // Use 10.0.2.2    for emulator          recognize
                 .post(requestBody)
                 .build();
 
@@ -301,89 +299,5 @@ public class CameraActivity extends AppCompatActivity {
                     );
         }
     }
-
-
-//    private void saveToFirebase(List<String> names) {
-//        String pathForDb = getIntent().getStringExtra("pathForDb");
-//
-//
-//
-//        if (pathForDb == null) {
-//            Toast.makeText(this, "Path not found!", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//        String[] pathDb = pathForDb.split("/");
-//        if (pathDb.length != 6) {
-//            return;
-//        }
-//
-//
-//        totalPresentStudents.setText(null);
-//        String str="Total Present Students = "+(String.valueOf(names.size()));
-//        totalPresentStudents.setText(str);
-//        if (pathForDb == null) {
-//            Toast.makeText(this, "Subject not found!", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//
-//        // Get today's date
-//        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-//
-////        FirebaseFirestore db = FirebaseFirestore.getInstance();
-////        DocumentReference lectureRef = db.collection("users").document(auth.getUid())
-////                .collection("Course").document(pathDb[0])
-////                .collection("Department").document(pathDb[1])
-////                .collection("Year").document(pathDb[2])
-////                .collection("Section").document(pathDb[3])
-////                .collection("Subjects").document(pathDb[4])
-////                .collection("Lecture").document(pathDb[5]);
-////
-////        Map<String, Object> lectureInfo = new HashMap<>();
-////        lectureInfo.put("createdAt", FieldValue.serverTimestamp());
-////
-////        lectureRef.set(lectureInfo, SetOptions.merge()); // 🔹 this ensures Lecture doc is visible
-////
-////        // Save students inside lecture -> date -> studentNames
-////        for (String name : names) {
-////            Map<String, Object> attendanceData = new HashMap<>();
-////            attendanceData.put("status", "present");
-////
-////            lectureRef.collection("dates").document(date)
-////                    .collection("studentNames").document(name)
-////                    .set(attendanceData)
-////                    .addOnSuccessListener(unused ->
-////                            Toast.makeText(CameraActivity.this, "Attendance marked", Toast.LENGTH_SHORT).show()
-////                    )
-////                    .addOnFailureListener(e ->
-////                            Toast.makeText(CameraActivity.this, "Attendance Failed", Toast.LENGTH_SHORT).show()
-////                    );
-//        for (String name : names) {
-//            Map<String, Object> attendanceData = new HashMap<>();
-//            attendanceData.put("status", "present");
-//            db.collection("users").document(auth.getUid())
-//                    .collection("Course").document(pathDb[0])
-//                    .collection("Department").document(pathDb[1])
-//                    .collection("Year").document(pathDb[2])
-//                    .collection("Section").document(pathDb[3])
-//                    .collection("Subjects").document(pathDb[4])
-//                    .collection("Lecture").document(pathDb[5])
-//                    .collection("dates").document(date)
-//                    .collection("studentNames").document(name)
-//                    .set(attendanceData)
-//                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                        @Override
-//                        public void onSuccess(Void unused) {
-//                            Toast.makeText(CameraActivity.this, "Attendance marked", Toast.LENGTH_SHORT).show();
-//                        }
-//                    })
-//                    .addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                            Toast.makeText(CameraActivity.this, "Attendance Failed", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-//        }
-//    }
-
 
 }

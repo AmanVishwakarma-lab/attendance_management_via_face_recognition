@@ -7,7 +7,34 @@
     android:layout_height="match_parent"
     tools:context=".DateAndLectureSelection"
     android:layout_marginTop="30dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#BF4D1A05">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="#1EA20C"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_weight="1"
+                android:paddingStart="20dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Attendance"/>
+
+        </LinearLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <ListView
         android:id="@+id/datesRecyclerView"

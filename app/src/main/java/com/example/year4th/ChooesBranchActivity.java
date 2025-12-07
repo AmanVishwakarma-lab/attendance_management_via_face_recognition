@@ -170,10 +170,18 @@ public class ChooesBranchActivity extends AppCompatActivity {
             Intent intent = new Intent(this, HistoryActivity.class);
             startActivity(intent);
         });
-        binding.logoutBtn.setOnClickListener(v->{
-            FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(this, LoginPage.class));
-            finishAffinity();
+        binding.logoutBtn.setOnClickListener(v -> {
+            new androidx.appcompat.app.AlertDialog.Builder(ChooesBranchActivity.this)
+                    .setTitle("Logout")
+                    .setMessage("Are you sure you want to logout?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(this, LoginPage.class));
+                        finish();
+                    })
+                    .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                    .show();
         });
     }
 
