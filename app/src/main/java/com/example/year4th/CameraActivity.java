@@ -138,26 +138,36 @@ public class CameraActivity extends AppCompatActivity {
                 })
                 .show();
     }
+
     private void openCamera() {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-            File photoFile = null;
-            try {
-                photoFile = createImageFile();
-            } catch (IOException ex) {
-                Toast.makeText(this, "Error creating image file", Toast.LENGTH_SHORT).show();
-                return;
-            }
 
-            if (photoFile != null) {
-                imageUri = FileProvider.getUriForFile(this,
-                        getPackageName() + ".fileprovider", photoFile);
-                cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-                cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        File photoFile = null;
+        try {
+            photoFile = createImageFile();
+        } catch (IOException ex) {
+            Toast.makeText(this, "Error creating file", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (photoFile != null) {
+            // Ensure getPackageName() + ".fileprovider" matches your Manifest authority!
+            imageUri = FileProvider.getUriForFile(this,
+                    getPackageName() + ".fileprovider", photoFile);
+
+            cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+            cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+            try {
+                // Remove the 'resolveActivity' check as it's unreliable on Android 11+
                 startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
+            } catch (Exception e) {
+                Log.e("CAMERA_ERROR", e.getMessage());
+                Toast.makeText(this, "No camera app found on this device", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
     private File createImageFile() throws IOException {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
@@ -204,7 +214,7 @@ public class CameraActivity extends AppCompatActivity {
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://10.82.36.90:5000/recognize") // Use 10.0.2.2    for emulator          recognize
+                .url("https://amanvishwakarmalab-face.hf.space/recognize")
                 .post(requestBody)
                 .build();
 

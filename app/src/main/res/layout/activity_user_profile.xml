@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserProfileActivity"
+    android:layout_margin="20dp"
+    android:padding="10dp"
+    android:background="#2203CCF4"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="User Profile"
+        android:textColor="@color/black"
+        android:textStyle="italic"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:layout_margin="10dp"
+        />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/app_icon_img"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        android:maxWidth="250dp"
+        android:maxHeight="250dp"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:hint="User Name"
+                android:gravity="center"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textSize="22sp"/>
+
+            <EditText
+                android:id="@+id/mobileNo"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:hint="Mobile Number"
+                android:inputType="phone"
+                android:textColor="@color/black"
+                android:textSize="22sp"/>
+
+            <EditText
+                android:id="@+id/signUpEmail"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:hint="Email"
+                android:gravity="center"
+                android:inputType="textEmailAddress"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+            <EditText
+                android:id="@+id/signUpPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:hint="Password"
+                android:gravity="center"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>

@@ -9,41 +9,48 @@
     tools:context=".ChooesBranchActivity"
     android:layout_margin="20dp"
     android:padding="10dp"
-    android:background="#BF4D1A05">
+    android:background="#2203CCF4">
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:backgroundTint="#1EA20C"
+        android:backgroundTint="#73C8EF"
         >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:layout_gravity="start|center"
+                android:src="@drawable/college_logo"
+                app:civ_circle_background_color="@color/white"
+                app:civ_border_width="1dp"
+                app:civ_border_color="#DDDDDD" />
             <TextView
                 android:layout_weight="1"
-                android:paddingStart="20dp"
+                android:layout_marginStart="10dp"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="25sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Attendance"/>
-            <ImageView
-                android:id="@+id/logoutBtn"
-                android:layout_gravity="bottom"
-
-                android:layout_width="60dp"
-                android:layout_height="40dp"
-                android:src="@drawable/logout_img"
+                android:text="United Attendance"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivProfile"
+                android:layout_gravity="center"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/outline_format_list_bulleted_24"
                 />
-<!--            <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--                android:id="@+id/logoutBtn"-->
-<!--                android:layout_width="50dp"-->
-<!--                android:layout_height="50dp"-->
-<!--                android:layout_gravity="end"-->
-<!--                android:src="@drawable/logout_img" />-->
 
         </LinearLayout>
 
@@ -51,182 +58,319 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <androidx.cardview.widget.CardView
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="7dp"
-        app:cardElevation="3dp"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="5dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardBackgroundColor="#A1D7EF"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:padding="5dp"
-            android:orientation="horizontal">
-            <TextView
-                android:textSize="22dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Course           : "
-                />
-            <Spinner
-                android:id="@+id/spinnerCourse"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"
-                />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="3dp"
-        android:elevation="7dp"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="5dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardBackgroundColor="#A1D7EF"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:padding="5dp"
-            android:orientation="horizontal">
+        android:columnCount="2"
+        android:padding="10dp">
 
-            <TextView
-                android:textSize="22dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Department  : "
-                />
-            <Spinner
-                android:id="@+id/spinnerDepartment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"
-                />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="3dp"
-        android:elevation="7dp"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="5dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardBackgroundColor="#A1D7EF"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:padding="5dp"
-            android:orientation="horizontal">
-            <TextView
-                android:textSize="22dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Year                : "
-                />
-            <Spinner
-                android:id="@+id/spinnerYear"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"
-                />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="3dp"
-        android:elevation="7dp"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="5dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardBackgroundColor="#A1D7EF"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:padding="5dp"
-            android:orientation="horizontal">
-            <TextView
-                android:textSize="22dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Section          : "
-                />
-            <Spinner
-                android:id="@+id/spinnerSection"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"
-                />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="3dp"
-        android:elevation="7dp"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="5dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardBackgroundColor="#A1D7EF"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:padding="5dp"
-            android:orientation="horizontal">
-            <TextView
-                android:textSize="22dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Subject          : "
-                />
-            <Spinner
-                android:id="@+id/spinnerSubject"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"
-                />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="3dp"
-        android:elevation="7dp"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="5dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardBackgroundColor="#A1D7EF"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:padding="5dp"
-            android:orientation="horizontal">
-            <TextView
-                android:textSize="22dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Lecture          : "
-                />
-            <Spinner
-                android:id="@+id/spinnerLecture"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:spinnerMode="dropdown"
-                />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        <!-- COURSE -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardCourse"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#50A1D7EF">
+
+                <TextView
+                    android:id="@+id/tvCourse"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Course"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+                <Spinner
+                    android:id="@+id/spinnerCourse"
+                    android:visibility="invisible"
+                    android:alpha="0"
+                    android:spinnerMode="dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fbCourse"
+                    app:srcCompat="@drawable/add_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="5dp"
+                    app:fabCustomSize="40dp"
+                    app:maxImageSize="25dp"
+                    android:scaleType="center"
+                    />
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- DEPARTMENT -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardDepartment"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#50A1D7EF">
+
+                <TextView
+                    android:id="@+id/tvDepartment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Department"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+                <Spinner
+                    android:id="@+id/spinnerDepartment"
+                    android:visibility="invisible"
+                    android:alpha="0"
+                    android:spinnerMode="dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fbDepartment"
+                    app:srcCompat="@drawable/add_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="5dp"
+                    app:fabCustomSize="40dp"
+                    app:maxImageSize="25dp"
+                    android:scaleType="center"
+                    />
+
+
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </GridLayout>
+
+
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:padding="10dp">
+
+        <!-- COURSE -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardYear"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#50A1D7EF">
+
+                <TextView
+                    android:id="@+id/tvYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Year"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+                <Spinner
+                    android:id="@+id/spinnerYear"
+                    android:visibility="invisible"
+                    android:alpha="0"
+                    android:spinnerMode="dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fbYear"
+                    app:srcCompat="@drawable/add_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="5dp"
+                    app:fabCustomSize="40dp"
+                    app:maxImageSize="25dp"
+                    android:scaleType="center"
+                    />
+
+
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- DEPARTMENT -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardSection"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#50A1D7EF">
+
+                <TextView
+                    android:id="@+id/tvSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Section"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+                <Spinner
+                    android:id="@+id/spinnerSection"
+                    android:visibility="invisible"
+                    android:alpha="0"
+                    android:spinnerMode="dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fbSection"
+                    app:srcCompat="@drawable/add_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="5dp"
+                    app:fabCustomSize="40dp"
+                    app:maxImageSize="25dp"
+                    android:scaleType="center"
+                    />
+
+
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </GridLayout>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:padding="10dp">
+
+        <!-- COURSE -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardLecture"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#50A1D7EF">
+
+                <TextView
+                    android:id="@+id/tvLecture"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Lecture"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+                <Spinner
+                    android:id="@+id/spinnerLecture"
+                    android:visibility="invisible"
+                    android:alpha="0"
+                    android:spinnerMode="dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fbLecture"
+                    app:srcCompat="@drawable/add_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="5dp"
+                    app:fabCustomSize="40dp"
+                    app:maxImageSize="25dp"
+                    android:scaleType="center"
+                    />
+
+
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <!-- DEPARTMENT -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardSubject"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#50A1D7EF">
+
+                <TextView
+                    android:id="@+id/tvSubject"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Subject"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"/>
+
+                <Spinner
+                    android:id="@+id/spinnerSubject"
+                    android:visibility="invisible"
+                    android:alpha="0"
+                    android:spinnerMode="dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fbSubject"
+                    app:srcCompat="@drawable/add_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="5dp"
+                    app:fabCustomSize="40dp"
+                    app:maxImageSize="25dp"
+                    android:scaleType="center"
+                    />
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+
+    </GridLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -237,7 +381,7 @@
         android:layout_marginEnd="10dp"
         >
         <androidx.appcompat.widget.AppCompatButton
-            android:background="@drawable/custom_btn"
+            android:background="#73C8EF"
             android:id="@+id/btnCapture"
 
             android:layout_width="match_parent"
@@ -245,12 +389,13 @@
             android:text="@string/capture_attendance" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:background="@drawable/custom_btn"
+            android:background="#73C8EF"
             android:id="@+id/btnHistory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/view_attendance_history"
             android:layout_marginTop="16dp"/>
+
     </LinearLayout>
 
 

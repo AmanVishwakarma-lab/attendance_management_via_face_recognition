@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,8 +7,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginPage"
-    android:background="@drawable/sign_up_bg"
     >
+<!--    android:alpha="0.4"-->
+<!--    android:background="@drawable/sign_up_bg"-->
+
 
 
     <TextView
@@ -17,13 +20,15 @@
         android:layout_marginTop="68dp"
         android:text="@string/login"
         android:textColor="#727CB8"
-        android:textSize="30sp"
+        android:textSize="35sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.116" />
+        app:layout_constraintVertical_bias="0.718" />
+
+    
 
     <EditText
         android:id="@+id/email"
@@ -75,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
-        android:background="@drawable/custom_btn"
+        android:background="#73C8EF"
         android:text="@string/login"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

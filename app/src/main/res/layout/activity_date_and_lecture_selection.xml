@@ -8,27 +8,37 @@
     tools:context=".DateAndLectureSelection"
     android:layout_marginTop="30dp"
     android:orientation="vertical"
-    android:background="#BF4D1A05">
+    android:background="#2203CCF4">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:backgroundTint="#1EA20C"
+        android:backgroundTint="#73C8EF"
         >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:layout_gravity="start|center"
+                android:src="@drawable/college_logo"
+                app:civ_circle_background_color="@color/white"
+                app:civ_border_width="1dp"
+                app:civ_border_color="#DDDDDD" />
             <TextView
                 android:layout_weight="1"
-                android:paddingStart="20dp"
+                android:layout_marginStart="10dp"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="25sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Attendance"/>
+                android:text="United Attendance"/>
 
         </LinearLayout>
 

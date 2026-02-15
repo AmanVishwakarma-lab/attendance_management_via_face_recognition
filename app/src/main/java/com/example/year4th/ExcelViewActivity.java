@@ -78,9 +78,31 @@ public class ExcelViewActivity extends AppCompatActivity {
 
             exportToExcel(attendanceList);
         });
-        shareExcelBtn.setOnClickListener(v->{
+        shareExcelBtn.setOnClickListener(v -> {
+
+            if (file == null || !file.exists()) {
+
+                if (presentStudents.isEmpty()) {
+                    Toast.makeText(this, "No data to export!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Create attendance list again
+                List<Map<String, Object>> attendanceList = new ArrayList<>();
+
+                for (String student : presentStudents) {
+                    Map<String, Object> record = new HashMap<>();
+                    record.put("name", student);
+                    record.put("status", "Present");
+                    attendanceList.add(record);
+                }
+
+                exportToExcel(attendanceList);
+            }
+
             shareExcelFile(file);
         });
+
     }
 
     private void fetchAttendance() {
@@ -174,23 +196,43 @@ public class ExcelViewActivity extends AppCompatActivity {
 
 
     private void shareExcelFile(File file) {
-        try {
-            Uri fileUri = FileProvider.getUriForFile(
-                    this,
-                    getApplicationContext().getPackageName() + ".provider",
-                    file
-            );
-
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            intent.putExtra(Intent.EXTRA_STREAM, fileUri);
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            startActivity(Intent.createChooser(intent, "Share Excel File"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        if (file == null || !file.exists()) {
+            Toast.makeText(this, "File not found!", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        Uri fileUri = FileProvider.getUriForFile(
+                this,
+                getPackageName() + ".provider",
+                file
+        );
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        intent.putExtra(Intent.EXTRA_STREAM, fileUri);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        startActivity(Intent.createChooser(intent, "Share Excel File"));
     }
+
+//    private void shareExcelFile(File file) {
+//        try {
+//            Uri fileUri = FileProvider.getUriForFile(
+//                    this,
+//                    getApplicationContext().getPackageName() + ".provider",
+//                    file
+//            );
+//
+//            Intent intent = new Intent(Intent.ACTION_SEND);
+//            intent.setType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+//            intent.putExtra(Intent.EXTRA_STREAM, fileUri);
+//            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//            startActivity(Intent.createChooser(intent, "Share Excel File"));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
 
 
